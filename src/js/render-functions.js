@@ -1,8 +1,9 @@
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 
-const loader = document.querySelector(".loader");
 const gallery = document.querySelector("ul.gallery");
+const loader = document.querySelector(".loader");
+const loadMoreBtn = document.querySelector(".load-more-btn");
 
 let galleryShow =  new SimpleLightbox('.gallery a', {captionsData: 'alt', captionDelay: 250});
 
@@ -38,7 +39,7 @@ export function createGallery(images) {
       </li>
       `)
     .join("");
-  gallery.innerHTML = content;
+  gallery.insertAdjacentHTML("beforeend", content);
   galleryShow.refresh();
 }
 
@@ -54,6 +55,10 @@ export function hideLoader() {
   loader.classList.add("hidden");
 }
 
-export function showLoadMoreButton() {}
+export function showLoadMoreButton() {
+  loadMoreBtn.classList.remove("hidden");
+}
 
-export function hideLoadMoreButton() {}
+export function hideLoadMoreButton() {
+  loadMoreBtn.classList.add("hidden");
+}
