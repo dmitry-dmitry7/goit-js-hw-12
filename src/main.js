@@ -10,6 +10,7 @@ const loadMoreBtn = document.querySelector(".load-more-btn");
 form.addEventListener("submit", handleSubmit);
 
 let searchText = "";
+const perPage = 15;
 let page;
 let totalPages;
 
@@ -34,7 +35,7 @@ async function handleSubmit(event) {
   try {
     const response = await getImagesByQuery(searchText, page);
     
-    totalPages = Math.ceil(response.totalHits / 15);
+    totalPages = Math.ceil(response.totalHits / perPage);
     const images = response.hits; 
     if (images.length === 0) {
       iziToast.error({
