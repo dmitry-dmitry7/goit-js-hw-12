@@ -13,6 +13,8 @@ let searchText = "";
 let page;
 let totalPages;
 
+hideLoadMoreButton();
+
 async function handleSubmit(event) {
   event.preventDefault();
   page = 1;
@@ -44,6 +46,11 @@ async function handleSubmit(event) {
       if (totalPages > 1) {
         showLoadMoreButton();
         page++;
+      } else {
+          iziToast.info({
+            message: "We're sorry, but you've reached the end of search results.",
+            position: 'topRight',
+          });
       }
     }
   } catch(error) {
